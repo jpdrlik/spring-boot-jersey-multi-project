@@ -3,6 +3,10 @@ pipeline {
     	docker { image 'java:openjdk-8-jdk-alpine' } 
     }
 
+    triggers { 
+        pollSCM('* * * * *') 
+    }
+
     stages {
         stage('Build') { 
             steps { 
