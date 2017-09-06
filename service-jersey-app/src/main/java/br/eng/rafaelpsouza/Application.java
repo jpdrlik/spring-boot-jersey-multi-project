@@ -19,6 +19,7 @@ public class Application {
                 .properties("management.contextPath:/resources")
                 .properties("spring.application.name:example-service")
                 .properties("info.version:1.0")
+                .properties("server.port:9090")
                 .listeners(new ApplicationPidFileWriter()).run();
     }
 

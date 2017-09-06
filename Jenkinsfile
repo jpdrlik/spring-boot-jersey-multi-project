@@ -11,7 +11,7 @@ pipeline {
         }
 
         stage('Release'){
-            archive includes: 'ervice-jersey-app/build/distributions/*.zip'
+             archiveArtifacts artifacts: 'service-jersey-app/build/distributions/*.zip'
         }
 
         stage('Deploy PROD') {
