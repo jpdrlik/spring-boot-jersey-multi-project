@@ -1,14 +1,15 @@
 pipeline {
-    agent { 
-    	docker { image 'java:openjdk-8-jdk' } 
-    }
+    agent any
 
     triggers { 
         pollSCM('* * * * *') 
     }
 
     stages {
-        stage('Build') { 
+        stage('Build') {
+            agent { 
+                docker { image 'java:openjdk-8-jdk' } 
+            } 
             steps { 
                 sh 'ls'
                 sh 'pwd'
@@ -18,6 +19,8 @@ pipeline {
 
         stage('Release'){
             steps{
+                sh 'ls'
+                sh 'pwd'
                 archiveArtifacts artifacts: 'service-jersey-app/build/distributions/*.zip'
             }
         }
