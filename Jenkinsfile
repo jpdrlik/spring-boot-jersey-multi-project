@@ -15,7 +15,9 @@ pipeline {
         }
 
         stage('Release'){
-             archiveArtifacts artifacts: 'service-jersey-app/build/distributions/*.zip'
+            steps{
+                archiveArtifacts artifacts: 'service-jersey-app/build/distributions/*.zip'
+            }
         }
 
         stage('Deploy PROD') {
