@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-    	docker { image 'java:openjdk-8-jdk-alpine' } 
+    	docker { image 'java:openjdk-8-jdk' } 
     }
 
     triggers { 
