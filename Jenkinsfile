@@ -35,7 +35,7 @@ pipeline {
                     input message: 'Are you sure?'
                 } 
                 sshagent (credentials: ['servidor-treinamento']) {            
-                    sh """scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zi ubuntu@172.31.9.116:~"""
+                     sh 'scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zip ubuntu@172.31.9.116:~'
                      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "unzip service-jersey-app-1.1.zip"'
                 }
             }
