@@ -14,14 +14,18 @@ pipeline {
                 sh 'ls'
                 sh 'pwd'
                 sh './gradlew clean build'
+                dir('agente/rest-api/build/distributions'){
+                    stash includes: 'service-jersey-app/build/distributions/*.zip', name: 'artefato'    
+                }
             }
+
         }
 
         stage('Release'){
             steps{
+                unstash 'artefato'
                 sh 'ls'
-                sh 'pwd'
-                archiveArtifacts artifacts: 'service-jersey-app/build/distributions/*.zip'
+                archiveArtifacts artifacts: '*.zip'
             }
         }
 
