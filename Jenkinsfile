@@ -14,8 +14,8 @@ pipeline {
                 sh 'ls'
                 sh 'pwd'
                 sh './gradlew clean build'
-                dir('agente/rest-api/build/distributions'){
-                    stash includes: 'service-jersey-app/build/distributions/*.zip', name: 'artefato'    
+                dir('service-jersey-app/build/distributions/'){
+                    stash includes: '*.zip', name: 'artefato'    
                 }
             }
 
