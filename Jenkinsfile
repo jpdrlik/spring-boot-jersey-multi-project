@@ -1,43 +1,17 @@
 pipeline {
     agent any
 
-    triggers { 
-        pollSCM('* * * * *') 
-    }
-
     stages {
         stage('Build') {
-            agent { 
-                docker { image 'java:openjdk-8-jdk' } 
-            } 
             steps { 
-                sh 'ls'
-                sh 'pwd'
-                sh './gradlew clean build'
-                dir('service-jersey-app/build/distributions/'){
-                    stash includes: '*.zip', name: 'artefato'    
-                }
+               echo 'Building...'
             }
 
         }
 
-        stage('Release'){
-            steps{
-                unstash 'artefato'
-                sh 'ls'
-                archiveArtifacts artifacts: '*.zip'
-            }
-        }
-
-        stage('Deploy PROD') {
+        stage('Deploy') {
             steps {
-                timeout(time:1, unit:'DAYS') {
-                    input message: 'Are you sure?'
-                } 
-                sshagent (credentials: ['servidor-treinamento']) {            
-                     sh 'scp -o StrictHostKeyChecking=no service-jersey-app-1.1.zip ubuntu@172.31.9.116:~'
-                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "unzip service-jersey-app-1.1.zip"'
-                }
+                sh 'ls -l'
             }
         }
     }
