@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps { 
+               ./gradlew clean build
+               sh 'ls -lR'
                echo 'Building...'
             }
 
