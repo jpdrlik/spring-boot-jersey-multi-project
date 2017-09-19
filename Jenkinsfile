@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy') {
             steps {
                sshagent (credentials: ['servidor-treinamento']) {
-                  sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "mkdir /home/ubuntu/jean"'             
+                  sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "mkdir-p /home/ubuntu/jean"'             
                   sh 'scp ./service-jersey-app/build/distributions/service-jersey-app-1.1.tar ubuntu@172.31.9.116:/home/ubuntu/jean/jean.tar'
                   sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "tar vxf /home/ubuntu/jean /home/ubuntu/jean/jean.tar"'            
                }
