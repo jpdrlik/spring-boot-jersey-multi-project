@@ -14,8 +14,8 @@ pipeline {
         stage('Deploy') {
             steps {
                sshagent (credentials: ['servidor-treinamento']) {
-                  sh 'scp ./service-jersey-app/build/distributions/service-jersey-app-1.1.zip ubuntu@172.31.9.116:/home/ubuntu/jean.zip'
-                  sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "unzip /home/ubuntu/jean.zip"'            
+                  sh 'scp ./service-jersey-app/build/distributions/service-jersey-app-1.1.tar ubuntu@172.31.9.116:/home/ubuntu/jean.tar'
+                  sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.9.116 "tar vxf /home/ubuntu/jean.tar"'            
                }
             }
         }
